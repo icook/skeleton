@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% set active_page = "login" %}
+{% set page_title = "Login" %}
+{% block body %}
+<div class="container">
+  <div class="col-md-12 col-md-offset-2">
+  {% if errors %}
+  <div class="alert alert-danger">
+    <ul>
+      {% for txt in errors %}
+      <li><b>{{ txt }}</b></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+  <h1>Login</h1>
+  <br>
+  <form role="form" method="post" novalidate>
+    <div class="form-group">
+      <label for="emailaddress" class="col-md-2">
+        Email address:
+      </label>
+      <div class="col-md-10">
+        <input type="email" class="form-control" value="{{ request.form.get('email', '') }}" name="email" placeholder="Enter email address">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password" class="col-md-2">
+        Password:
+      </label>
+      <div class="col-md-10">
+        <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
+      </div>
+    </div>
+    <div class="col-md-2">
+      &nbsp;
+    </div>
+    <div class="col-md-10">
+      <button type="submit" class="btn btn-info">
+        Login
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}
