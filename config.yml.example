@@ -1,0 +1,10 @@
+log_level: "DEBUG"
+assets_address: "/static"
+
+SQLALCHEMY_DATABASE_URI: "sqlite:////home/isaac2/programming/skeleton/db.sqlite"
+SECRET_KEY: "testing_key"
+ASSETS_DEBUG: False
+SASS_DEBUG_INFO: True
+DEBUG: True
+#SASS_LOAD_PATHS:
+#    - "../bootstrap-sass/assets/stylesheets"
