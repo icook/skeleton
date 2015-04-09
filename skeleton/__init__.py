@@ -5,7 +5,6 @@ import cryptacular.bcrypt
 import yaml
 import sys
 
-from webassets.filter.pyscss import PyScss
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
@@ -65,7 +64,7 @@ def create_app(config='/config.yml', log_level='INFO'):
     assets.init_app(app)
     # We're going to modify SCSS load path to let us override vanilla bootstrap stuff
     bootstrap_all = Bundle('../scss/main.scss',
-                           filters=['scss'], output='css/main.css')
+                           filters=['scss'], output='gen/main.css')
     assets.register('bootstrap_all', bootstrap_all)
 
     hdlr = logging.FileHandler(app.config.get('log_file', 'webserver.log'))

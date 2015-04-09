@@ -1,3 +1,5 @@
+static/.webassets-cache
+static/gen
 *.yml.*
 *.yml
 *.log
