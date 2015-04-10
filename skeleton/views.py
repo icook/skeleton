@@ -15,8 +15,9 @@ main = Blueprint('main', __name__)
 
 @main.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(root, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory(
+        os.path.join(root, 'static'),
+        'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @main.route("/account")
