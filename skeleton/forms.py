@@ -1,7 +1,7 @@
 import wtforms as field
 import wtforms.validators as validators
 from flask.ext.wtf import Form
-from flask.ext.security.forms import unique_user_email
+from flask.ext.security.forms import unique_user_email, RegisterFormMixin
 from . import models as m
 
 
@@ -15,7 +15,7 @@ def unique_user_name(form, field):
 
 
 class ExtendedRegisterForm(Form):
-    username = field.PasswordField(
+    username = field.TextField(
         'Username',
         validators=[unique_user_name])
     email = field.TextField(
@@ -27,3 +27,5 @@ class ExtendedRegisterForm(Form):
                     validators.EqualTo('confirm', message='Passwords must match')])
     confirm = field.PasswordField('Repeat Password')
     submit = field.SubmitField("Register")
+
+    to_dict = RegisterFormMixin.to_dict

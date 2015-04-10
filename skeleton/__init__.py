@@ -1,7 +1,6 @@
 import subprocess
 import logging
 import os
-import cryptacular.bcrypt
 import yaml
 import sys
 
@@ -20,8 +19,6 @@ db = SQLAlchemy()
 assets = Environment()
 security = Security()
 mail = Mail()
-
-crypt = cryptacular.bcrypt.BCRYPTPasswordManager()
 
 
 def create_app(config='/config.yml', log_level='INFO'):
