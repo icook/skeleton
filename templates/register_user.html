@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% from "_macros.html" import render_form %}
+
+{% block body %}
+{% include "security/_messages.html" %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Register</h1>
+      {{ register_user_form.hidden_tag() }}
+      {{ render_form(register_user_form, action_url=url_for_security('register'), action_text='Register') }}
+    </div>
+  </div>
+</div>
+{% endblock %}

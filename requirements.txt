@@ -17,3 +17,4 @@ lever==0.2.6
 decorator
 cryptacular==1.4.1
 Flask-Login==0.2.11
+Flask-Mail==0.9.1

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% set active_page = "login" %}
-{% set page_title = "Login" %}
+{% set active_page = "reset" %}
+{% set page_title = "Reset Your Password" %}
 {% block body %}
 <div class="container">
   <div class="col-md-12 col-md-offset-2">
@@ -13,7 +13,7 @@
     </ul>
   </div>
   {% endif %}
-  <h1>Login</h1>
+  <h1>Reset</h1>
   <br>
   <form role="form" method="post" novalidate>
     <div class="form-group">
@@ -24,23 +24,14 @@
         <input type="email" class="form-control" value="{{ request.form.get('email', '') }}" name="email" placeholder="Enter email address">
       </div>
     </div>
-    <div class="form-group">
-      <label for="password" class="col-md-2">
-        Password:
-      </label>
-      <div class="col-md-10">
-        <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
-      </div>
-    </div>
     <div class="col-md-2">
       &nbsp;
     </div>
     <div class="col-md-10">
       <button type="submit" class="btn btn-info">
-        Login
+        Send me and email
       </button>
     </div>
   </form>
 </div>
-<a href="/reset">Forgot my password</a> - <a href="/send_login">Forgot my username</a>
 {% endblock %}

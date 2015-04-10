@@ -1,5 +1,6 @@
 static/.webassets-cache
 static/gen
+*.sqlite
 *.yml.*
 *.yml
 *.log

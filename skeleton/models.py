@@ -1,20 +1,31 @@
 import datetime
 
+from flask.ext.security import UserMixin, RoleMixin
 from .model_lib import base
 from . import db, crypt
 
 
-class User(base):
+roles_users = db.Table('roles_users',
+                       db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
+                       db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
+
+
+class Role(db.Model, RoleMixin):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(80), unique=True)
+    description = db.Column(db.String(255))
+
+
+class User(base, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String)
-    email = db.Column(db.String)
+    username = db.Column(db.String, unique=True)
+    email = db.Column(db.String, unique=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     _password = db.Column(db.String)
-
-    __table_args__ = (
-        db.UniqueConstraint('email', name='user_email_unique'),
-        db.UniqueConstraint('username', name='user_username_unique'),
-    )
+    confirmed_at = db.Column(db.DateTime)
+    active = db.Column(db.Boolean)
+    roles = db.relationship('Role', secondary=roles_users,
+                            backref=db.backref('users', lazy='dynamic'))
 
     @property
     def password(self):

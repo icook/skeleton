@@ -31,13 +31,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" style="padding:10px;" href="/">
+          <a class="navbar-brand" href="/">
             Skeleton
-            </b></a></a>
+          </a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            {% if g.user %}
+            {% if current_user.is_authenticated() %}
             <li><a href="/logout">Logout</a></li>
             {% else %}
             <li><a href="/login">Login</a></li>
@@ -47,10 +47,6 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-  <br />
-  <br />
-  <br />
-  <a class="btn btn-success">Test</a>
   {% block body %}
   {% endblock %}
 </body>

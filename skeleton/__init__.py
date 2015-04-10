@@ -9,6 +9,8 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
 from flask.ext.assets import Environment, Bundle
+from flask.ext.security import Security, SQLAlchemyUserDatastore
+from flask_mail import Mail
 from jinja2 import FileSystemLoader
 
 
@@ -16,6 +18,8 @@ root = os.path.abspath(os.path.dirname(__file__) + '/../')
 lm = LoginManager()
 db = SQLAlchemy()
 assets = Environment()
+security = Security()
+mail = Mail()
 
 crypt = cryptacular.bcrypt.BCRYPTPasswordManager()
 
@@ -61,6 +65,10 @@ def create_app(config='/config.yml', log_level='INFO'):
     # register all our plugins
     db.init_app(app)
     lm.init_app(app)
+    mail.init_app(app)
+    from . import models
+    user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
+    security.init_app(app, user_datastore)
     assets.init_app(app)
     # We're going to modify SCSS load path to let us override vanilla bootstrap stuff
     bootstrap_all = Bundle('../scss/main.scss',
