@@ -30,22 +30,6 @@ def home():
     return render_template('home.html')
 
 
-@main.route("/login", methods=['GET', 'POST'])
-def login():
-    errors = []
-    if request.method == 'POST':
-        user = User.query.filter_by(email=request.form['email']).first()
-        if user:
-            if not user.check_password(request.form['password']):
-                errors.append("Incorrect email/password")
-            else:
-                login_user(user)
-                return redirect(request.args.get("next") or url_for("main.home"))
-        else:
-            errors.append("Incorrect email/password")
-    return render_template('login.html', errors=errors)
-
-
 @main.route("/activate/<hash>/<userid>", methods=['GET', 'POST'])
 def activate():
     pass

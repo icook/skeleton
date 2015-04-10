@@ -66,9 +66,9 @@ def create_app(config='/config.yml', log_level='INFO'):
     db.init_app(app)
     lm.init_app(app)
     mail.init_app(app)
-    from . import models
+    from . import models, forms
     user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
-    security.init_app(app, user_datastore)
+    security.init_app(app, user_datastore, confirm_register_form=forms.ExtendedRegisterForm)
     assets.init_app(app)
     # We're going to modify SCSS load path to let us override vanilla bootstrap stuff
     bootstrap_all = Bundle('../scss/main.scss',

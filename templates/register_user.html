@@ -1,14 +1,15 @@
 {% extends "base.html" %}
+{% set active_page = "register" %}
+{% set page_title = "Register" %}
 {% from "_macros.html" import render_form %}
 
 {% block body %}
-{% include "security/_messages.html" %}
 <div class="container">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-6 col-md-offset-3">
       <h1>Register</h1>
       {{ register_user_form.hidden_tag() }}
-      {{ render_form(register_user_form, action_url=url_for_security('register'), action_text='Register') }}
+      {{ render_form(register_user_form, action_url=url_for_security('register')) }}
     </div>
   </div>
 </div>
