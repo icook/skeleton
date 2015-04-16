@@ -61,7 +61,7 @@
  
 {% macro render_submit_field(field) -%}
     <div class="form-group {{ kwargs.pop('class_', '') }}">
-        {{ field(class_='form-control', **kwargs) }}
+        {{ field(class_='btn btn-primary', **kwargs) }}
     </div>
 {%- endmacro %}
  
