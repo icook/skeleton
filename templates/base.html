@@ -47,16 +47,10 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-  {%- with messages = get_flashed_messages(with_categories=true) -%}
-    {% if messages %}
-      <ul class="flashes">
-      {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-      {% endfor %}
-      </ul>
-    {% endif %}
-  {%- endwith %}
   {% block body %}
+    {% include "_flash.html" %}
+    {% block body_w_flash %}
+    {% endblock %}
   {% endblock %}
 </body>
 </html>
