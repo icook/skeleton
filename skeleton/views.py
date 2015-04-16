@@ -30,16 +30,6 @@ def home():
     return render_template('home.html')
 
 
-@main.route("/activate/<hash>/<userid>", methods=['GET', 'POST'])
-def activate():
-    pass
-
-
-@main.route("/recover/<hash>/<userid>", methods=['GET', 'POST'])
-def recover():
-    pass
-
-
 @main.route("/logout")
 @login_required
 def logout():
